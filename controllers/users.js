@@ -31,13 +31,14 @@ const updateUser = async (req, res, next) => {
     if (!updatedUser) {
       throw new NotFoundError('Пользователя с данным id не существует');
     }
-    res.send(updateUser);
+    res.send(updatedUser);
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new BadRequestError('Переданы некорректные данные'));
       return;
     }
     next(err);
+    console.log(err.message);
   }
 };
 
