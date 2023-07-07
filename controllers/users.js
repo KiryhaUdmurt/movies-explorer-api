@@ -38,7 +38,6 @@ const updateUser = async (req, res, next) => {
       return;
     }
     next(err);
-    console.log(err.message);
   }
 };
 

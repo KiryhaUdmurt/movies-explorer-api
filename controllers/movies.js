@@ -24,7 +24,6 @@ const addMovie = async (req, res, next) => {
       next(new BadRequestError('Переданы некорректные данные'));
       return;
     }
-    console.log(err.message);
     next(err);
   }
 };
