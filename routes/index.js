@@ -7,7 +7,9 @@ const { createUser, login } = require('../controllers/users');
 const NotFoundError = require('../errors/not-found-err');
 const { requestLogger } = require('../middlewares/logger');
 const { validateUser, validateAuth } = require('../middlewares/validate');
+const limiter = require('../middlewares/rate-limiter');
 
+router.use(limiter);
 router.use(requestLogger);
 router.use('/signup', validateUser, createUser);
 router.use('/signin', validateAuth, login);
