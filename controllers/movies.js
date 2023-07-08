@@ -5,11 +5,7 @@ const movieModel = require('../models/movie');
 
 const getSavedMovies = async (req, res, next) => {
   try {
-    const { _id } = req.user;
-    const movies = await movieModel.findById(_id);
-    if (!movies) {
-      throw new NotFoundError('Нет сохранённых фильмов');
-    }
+    const movies = await movieModel.find({});
     res.send(movies);
   } catch (err) {
     next(err);

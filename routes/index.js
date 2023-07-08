@@ -6,10 +6,11 @@ const auth = require('../middlewares/auth');
 const { createUser, login } = require('../controllers/users');
 const NotFoundError = require('../errors/not-found-err');
 const { requestLogger } = require('../middlewares/logger');
+const { validateUser, validateAuth } = require('../middlewares/validate');
 
 router.use(requestLogger);
-router.use('/signup', createUser);
-router.use('/signin', login);
+router.use('/signup', validateUser, createUser);
+router.use('/signin', validateAuth, login);
 router.use(auth);
 router.use('/', userRouter);
 router.use('/', moviesRouter);
